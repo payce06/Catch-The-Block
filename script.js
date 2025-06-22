@@ -27,7 +27,6 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "ArrowLeft") moveLeft = true;
   if (e.key === "ArrowRight") moveRight = true;
 });
-
 document.addEventListener("keyup", (e) => {
   if (e.key === "ArrowLeft") moveLeft = false;
   if (e.key === "ArrowRight") moveRight = false;
@@ -39,6 +38,7 @@ function createBlock() {
   block.style.left = `${Math.floor(Math.random() * 370)}px`;
 
   game.appendChild(block);
+
   let blockY = 0;
   const fallSpeed = 4;
 
@@ -58,3 +58,29 @@ function createBlock() {
         return;
       }
     }
+
+    if (blockY > 500) {
+      missed++;
+      missedEl.textContent = missed;
+
+      // Splat effect
+      const splat = document.createElement("div");
+      splat.classList.add("splat");
+      splat.style.left = block.style.left;
+      splat.style.top = "490px";
+      game.appendChild(splat);
+
+      setTimeout(() => splat.remove(), 400);
+
+      block.remove();
+      clearInterval(blockInterval);
+
+      if (missed >= 5) {
+        alert(`Game Over! Final Score: ${score}`);
+        clearInterval(gameInterval);
+      }
+    }
+  }, 20);
+}
+
+const gameInterval = setInterval(createBlock, 1000);
