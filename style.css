@@ -1,0 +1,16 @@
+body {
+    font-family: 'Segeo UI', sans-serif;
+    text-align: center;
+    background: linear-gradient(to bottom, #111, #333);
+    color: #fff;
+    margin: 0;
+}
+
+h1 {
+    margin: 20px 0 10px;
+}
+
+.scoreboard {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
