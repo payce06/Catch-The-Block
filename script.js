@@ -39,3 +39,22 @@ function createBlock() {
   block.style.left = `${Math.floor(Math.random() * 370)}px`;
 
   game.appendChild(block);
+  let blockY = 0;
+  const fallSpeed = 4;
+
+  const blockInterval = setInterval(() => {
+    blockY += fallSpeed;
+    block.style.top = `${blockY}px`;
+
+    const blockX = parseInt(block.style.left);
+    const playerY = 470;
+
+    if (blockY >= playerY - 10 && blockY <= playerY + 20) {
+      if (blockX + 30 > playerX && blockX < playerX + 60) {
+        score++;
+        scoreEl.textContent = score;
+        block.remove();
+        clearInterval(blockInterval);
+        return;
+      }
+    }
