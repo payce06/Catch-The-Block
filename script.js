@@ -21,3 +21,21 @@ function movePlayer() {
   requestAnimationFrame(movePlayer);
 }
 movePlayer();
+
+// Keyboard event listeners
+document.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowLeft") moveLeft = true;
+  if (e.key === "ArrowRight") moveRight = true;
+});
+
+document.addEventListener("keyup", (e) => {
+  if (e.key === "ArrowLeft") moveLeft = false;
+  if (e.key === "ArrowRight") moveRight = false;
+});
+
+function createBlock() {
+  const block = document.createElement("div");
+  block.classList.add("falling-block");
+  block.style.left = `${Math.floor(Math.random() * 370)}px`;
+
+  game.appendChild(block);
